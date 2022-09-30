@@ -1,0 +1,97 @@
+/* Practical 06
+Aim: Witing PL/SQL Block
+a. Create an empty procedures, replace a procedure and call procedure
+b. Create a stored procedure and call it
+c. Define procedure to insert data
+d. A forward declaration of procedure */
+
+-- A)
+CREATE OR REPLACE PROCEDURE DISPLAY
+IS
+BEGIN
+DBMS_OUTPUT.PUT_LINE('HELLO SQL');
+END;
+/
+	
+--TO DISPLAY THE MESSAGE:
+EXEC DISPLAY;
+
+-- B1)
+DECLARE
+a NUMBER;
+PROCEDURE squareNum(x IN OUT number)  as
+BEGIN
+x:=x*x;
+END;
+BEGIN
+a:=13;
+squareNum(a);
+DBMS_OUTPUT.PUT_LINE('Square of (13): '||a);
+END;
+/
+
+-- B2)
+DECLARE
+a number;
+b number;
+c number;
+PROCEDURE findMin(x IN number, y IN number, z OUT number) is
+BEGIN
+IF x<y THEN
+z:=x;
+ELSE
+z:=y;
+END IF;
+END;
+BEGIN
+a:=199;
+b:=139;
+findMin(a, b, c);
+DBMS_OUTPUT.PUT_LINE('Minimum of (199, 139): '||c);
+END;
+/
+
+-- C)
+CREATE TABLE emp
+(
+empid NUMBER(3) PRIMARY KEY,
+ename varchar2(30),
+eaddr varchar2(50)
+);
+
+insert into emp values('&empid', '&ename', '&eaddr');
+
+
+CREATE OR REPLACE PROCEDURE syemp(eid in Number)
+is
+empname varchar2(30);
+empaddr varchar2(50);
+BEGIN
+select ename, eaddr into empname, empaddr from emp where
+empid=eid;
+DBMS_OUTPUT.PUT_LINE('Emp ID: '||eid);
+DBMS_OUTPUT.PUT_LINE('Emp NAME: '||empname);
+DBMS_OUTPUT.PUT_LINE('Emp Address: '||empaddr);
+end;
+/
+
+-- D)
+CREATE TABLE syarea1
+(
+radius number(3),
+area number(7, 2)
+);
+
+CREATE OR REPLACE PROCEDURE syareas1(rad in number)
+is
+pi constant number(3, 2):=3.14;
+area1 number(7, 2);
+BEGIN
+area1:= pi*power(rad, 2);
+insert into syarea1 values(rad, area1);
+END;
+/
+
+exec syareas1(20);
+	
+select * from syarea1;

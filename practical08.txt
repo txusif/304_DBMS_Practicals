@@ -1,0 +1,43 @@
+/* Prcatical no: 08
+
+Aim: Creating and working with Insert/Update/Delete Trigger using Before/After clause. */
+
+CREATE TABLE empm
+(
+empid VARCHAR2(3) PRIMARY KEY,
+ename VARCHAR2(20),
+address VARCHAR2(15),
+salary NUMBER(8, 2),
+doj DATE
+);
+
+INSERT INTO empm VALUES('101', 'Iqra shaikh', 'Mira Road', 200000, '11-may-2001');
+INSERT INTO empm VALUES('102', 'Hina shaikh', 'Kandivali', 250000, '17-may-2009');
+INSERT INTO empm VALUES('103', 'Umar Farooqui', 'Borivali', 500000, '22-jun-2005');
+INSERT INTO empm VALUES('104', 'Faisal khan', 'Dadar', 350000, '5-jan-2011');
+
+CREATE OR REPLACE TRIGGER empSecure BEFORE INSERT OR UPDATE OR DELETE ON empm
+BEGIN
+IF(TO_CHAR(sysdate, 'HH24:MI') NOT BETWEEN '14:15' AND '18:30')
+THEN 
+DBMS_OUTPUT.PUT_LINE('Emp table is Secured!!!');
+RAISE_APPLICATION_ERROR(-20500, 'table is Secured');
+END IF;
+END;
+/
+
+INSERT INTO empm VALUES('105', 'Asgar Mulla', 'Dahisar', 120000, '5-Aug-2016');
+
+ALTER TRIGGER empSecure DISABLE;
+
+CREATE OR REPLACE TRIGGER empSecure3 BEFORE INSERT OR UPDATE OR DELETE ON emp
+BEGIN
+IF(TO_CHAR(sysdate, 'HH24:MI') NOT BETWEEN '14:15' AND '18:30')
+THEN 
+DBMS_OUTPUT.PUT_LINE('Emp table is Secured!!!');
+RAISE_APPLICATION_ERROR(-20500, 'table is Secured');
+END IF;
+END;
+/
+
+UPDATE emp SET ename ='xyz' where empid = 8;

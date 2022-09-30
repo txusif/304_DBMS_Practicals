@@ -1,0 +1,62 @@
+/* Practical 05
+Aim: Witing PL/SQL Blocks with basic programming constructs by including a GoTo to jump out of a loop and NULL as a statement inside IF
+A. */
+
+DECLARE
+n number(3);
+BEGIN
+n:=&n;
+IF n<0 THEN
+DBMS_OUTPUT.PUT_LINE('Negative');
+ELSE
+NULL;
+END IF;
+END;
+/
+
+--B.
+
+DECLARE
+n number(3);
+i number(3);
+res number(6);
+BEGIN
+n:=&n;
+i:=n;
+res:=1;
+<<sstart>>
+IF i<1 THEN
+	GOTO fin;
+END IF;
+res:=res*i;
+i:=i-1;
+If i>-1 THEN
+	GOTO sstart;
+END IF;
+<<fin>>
+DBMS_OUTPUT.PUT_LINE(n||'!= '||res);
+END;
+/
+
+--C.
+
+DECLARE
+a number(4);
+b number(4);
+c number(4);
+BEGIN
+a:=&a;
+b:=0;
+c:=a;
+WHILE c>0
+LOOP
+b:=b+power((c mod 10), 3);
+c:=TRUNC(c/10);
+END LOOP;
+If b=a THEN
+DBMS_OUTPUT.PUT_LINE(a||' is an armstrong number');
+ELSE
+DBMS_OUTPUT.PUT_LINE(a||' is not an armstrong number');
+END IF;
+END;
+/

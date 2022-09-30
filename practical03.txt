@@ -1,0 +1,46 @@
+/* Aim:Write a PL/SQL blocks with basic programming constructs by including following:
+a.IF..THEN...else, IF..elseIF....END IF
+b.Case Statement
+c.Write a PL/SQL block to accept an employee FROM the user .
+check the date of joining for the employee and display the corresponding month name using CASE statement (*empl FROM previous TABLE can be used)
+
+a)1]Write a PL/SqL block to accept an employee FROM the user.
+IF that employee is a female, add 5 years to age.
+IF that employee is a male, add 3 years to age.
+CREATE the empl TABLE with appropriate columns. */
+
+CREATE TABLE empl
+(
+eno NUMBER(3),
+ename varchar2(30),
+doj DATE,
+eage NUMBER(3),
+egENDer char(1),
+esalary NUMBER(8,2)
+)
+;
+
+INSERT INTO empl VALUES(4,'serena','10-MAR-2017',23,'F',55000);
+INSERT INTO empl VALUES(22,'txusif','28-oct-2017',23,'M',55000);
+INSERT INTO empl VALUES(999,'jarad','28-jul-2017',22,'M',45000);
+INSERT INTO empl VALUES(20,'morty','21-apr-2015',32,'M',30000);
+INSERT INTO empl VALUES(1,'rick','21-jan-2015',23,'M',40000);
+
+SELECT * FROM empl;
+
+DECLARE
+meno NUMBER (3);
+mgENDer char(1);
+mage NUMBER(3);
+BEGIN
+meno:=&meno;
+SELECT egender,eage INTO mgender,mage FROM empl WHERE eno=meno;
+DBMS_OUTPUT.PUT_LINE('Emo no: '||meno||' is '||mgender||' and is '||mage||' year old');
+IF mgENDer='F' THEN
+UPDATE empl set eage=eage+5 WHERE eno=meno;
+END IF;
+IF mgenderer='M' THEN
+UPDATE empl set eage=eage+3 WHERE eno=meno;
+END IF;
+END;
+/

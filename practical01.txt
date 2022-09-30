@@ -1,0 +1,53 @@
+-- Q.1 Hello world 
+set  serveroutput on;
+DECLARE
+BEGIN
+DBMS_OUTPUT.PUT_LINE('Hello World');
+END;
+/
+
+-- Q.2 Square and cube of a NUMBER
+DECLARE
+n1 NUMBER(3);
+sq NUMBER(3);
+cu NUMBER(3);
+BEGIN
+n1:=&n1;
+sq:=n1*n1;
+cu:=n1*n1*n1;
+DBMS_OUTPUT.PUT_LINE('Square of ' || n1 ||' is ' || sq);
+DBMS_OUTPUT.PUT_LINE('Cube of ' || n1 ||' is ' || cu);
+END;
+/
+
+-- Q.3 Consecutive NUMBERs
+DECLARE
+n1 NUMBER(3);
+i NUMBER(3);
+BEGIN
+n1:=&n1;
+i:=n1+1;
+DBMS_OUTPUT.PUT_LINE('Consecutive 7 NUMBERS from ' || n1 || ' are:');
+LOOP
+DBMS_OUTPUT.PUT_LINE(i);
+i:=i+1;
+EXIT WHEN i>(n1+7);
+END LOOP;
+END;
+/
+
+-- Q.4 Mathematical table
+DECLARE
+n1 NUMBER(3);
+i NUMBER(3);
+BEGIN
+n1:=&n1;
+i:=1;
+DBMS_OUTPUT.PUT_LINE('Mathematical table of  ' || n1);
+LOOP
+DBMS_OUTPUT.PUT_LINE(n1 || ' x ' || i || ' = ' || (n1*i));
+i:=i+1;
+EXIT WHEN i>10;
+END LOOP;
+END;
+/

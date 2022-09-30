@@ -1,0 +1,29 @@
+/* Q.1. Creating simple sequences with clauses like START WITH, INCREMENT BY, MAXVALUE,MINVALUE, CYCLE |NOCYCLE, CACHE| NOCACHE, ORDER| NOORDER.
+Q.2 Creating and using sequences for tables. */
+
+Create or replace sequence rn minvalue 1 maxvalue 5 increment by -1;
+
+Select rn.nextval from dual;
+
+Select rn.currval from dual;
+
+alter sequence rn maxvalue 10 increment by 2;
+
+alter sequence rn maxvlaue 15 increment by 1 cycle cache 5;
+
+/* B)
+Q.2) */
+
+Create table stud(
+studid varchar2(4) primary key,
+studname varchar2(20) not null,
+rollno number(2),
+class varchar2(10)
+);
+
+create sequence stud1 start with 1 minvalue 1 maxvalue 999 increment by 1 cycle;  // cycle = to repeat numbers again
+insert into stud values('1'|| stud1.nextval,'&studname', '&rollno', '&class');
+insert into stud values('2'|| stud1.nextval,'&studname','&rollno', '&class');
+insert into stud values('3'|| stud1.nextval,'&studname','&rollno', '&class');
+insert into stud values('4'|| stud1.nextval,'&studname','&rollno', '&class');
+insert into stud values('5'|| stud1.nextval,'&studname','&rollno', '&class');

@@ -1,0 +1,107 @@
+/* 25 August 2022
+Practical 07
+a. Define and call a function
+
+FUNCTION: */
+
+CREATE OR REPLACE FUNCTION myUpperFn
+RETURN varchar2
+IS
+myvar varchar2(50);
+BEGIN
+SELECT upper('sycs') into myvar FROM DUAL;
+RETURN myvar;
+END;
+/
+
+DECLARE 
+mystr varchar2(50);
+BEGIN
+mystr:=myUpperFn();
+DBMS_OUTPUT.PUT_LINE('UpperCase string: '||mystr);
+END;
+/
+
+-- b. Define and use function in select clause
+
+CREATE OR REPLACE FUNCTION myUpperFn(str varchar2)
+RETURN varchar2
+IS
+myvar varchar2(50);
+BEGIN
+SELECT upper(str) into myvar FROM DUAL;
+RETURN myvar;
+END;
+/
+
+-- c. Call function in DBMS_OUTPUT.PUT_LINE
+
+DECLARE 
+mystr varchar2(50);
+myword varchar2(50);
+BEGIN
+myword:='&myword';
+mystr:=myUpperFn(myword);
+DBMS_OUTPUT.PUT_LINE('UpperCase string: '||mystr);
+END;
+/
+
+-- Q3
+
+CREATE TABLE EMP3
+(
+eno NUMBER(3),
+ename VARCHAR2(50),
+eage NUMBER(3),
+egender CHAR(1),
+esal NUMBER(10, 2)
+);
+
+INSERT INTO emp3 VALUES(4, 'Serena', 18, 'F', 500000);
+INSERT INTO emp3 VALUES(22, 'Txusif', 20, 'M', 1000);
+
+CREATE OR REPLACE FUNCTION count_of
+RETURN NUMBER
+AS
+myvar NUMBER(4);
+BEGIN
+SELECT COUNT(*) INTO myvar FROM emp3;
+RETURN myvar;
+END;
+/
+
+-- f. Call function and store the return value to a variable
+
+DECLARE
+mynum NUMBER;
+BEGIN
+mynum:=count_of();
+DBMS_OUTPUT.PUT_LINE('Number of Employees: '||mynum);
+END;
+/
+
+-- d. Recursive Function
+
+CREATE OR REPLACE FUNCTION fact(n NUMBER)
+return NUMBER
+AS
+f NUMBER;
+BEGIN
+if(n=0) THEN
+f:=1;
+ELSE
+f:=n*fact(n-1);
+END IF;
+RETURN f;
+END;
+/
+
+DECLARE 
+num NUMBER;
+num1 NUMBER;
+BEGIN
+num1:=&num;
+num:=fact(num1);
+DBMS_OUTPUT.PUT_LINE(Num1||'!= '||num);
+END;
+/

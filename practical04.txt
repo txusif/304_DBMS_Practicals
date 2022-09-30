@@ -1,0 +1,57 @@
+/* Date: 04 August 2022
+
+Writing PL/SQL Blocks with basic programming constructs for following Iterative Structures:
+a. While-loop Statements
+b. For-loop Statements */
+
+-- (a) While Loop Statements
+
+create table areas
+(
+radius number(3),
+area number(10, 2)
+); 
+
+DECLARE
+radius number(3):=3;
+area number(10, 2);
+pi constant number(4, 2):=3.14;
+BEGIN
+WHILE (radius<=7)
+LOOP
+area:=pi*power(radius, 2);
+insert into areas values(radius, area);
+radius:=radius+1;
+END LOOP;
+END;
+/
+
+SELECT * FROM areas;
+
+-- (b) For Loop Statements
+
+DECLARE
+given_str varchar2(10);
+str_len number(3);
+rev_str varchar2(10);
+BEGIN
+given_str:='&given_str';
+str_len:= length(given_str);
+for cntr in reverse 1..str_len
+LOOP
+rev_str:=rev_str||substr(given_str, cntr, 1);
+END LOOP;
+DBMS_OUTPUT.PUT_LINE('Given String= '||given_str);
+DBMS_OUTPUT.PUT_LINE('Reverse String= '||rev_str);
+END;
+/
+
+-- For Practice
+DECLARE
+a number(2);
+BEGIN
+For a in 10 .. 20 LOOP
+DBMS_OUTPUT.PUT_LINE('Value of a: '||a);
+END LOOP;
+END;
+/

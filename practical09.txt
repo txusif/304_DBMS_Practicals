@@ -1,0 +1,33 @@
+/* Practical no: 09
+
+Aim: Write an Implicit/Explict cursor to complete task. */
+
+CREATE TABLE customers
+(
+ID INT NOT NULL ,
+NAME VARCHAR2(20) NOT NULL,
+AGE INT NOT NULL,
+ADDRESS CHAR(25),
+SALARY DECIMAL(18, 2),
+PRIMARY KEY(ID)
+);
+
+INSERT INTO customers VALUES(1, 'Eren Yeager', 19,  'Mira Road', 200000);
+
+INSERT INTO customers VALUES(40, 'Rupesh', 19,  'Penkarpada', 250000);
+
+DECLARE
+total_rows NUMBER(2);
+BEGIN
+UPDATE customers
+SET SALARY = SALARY+111;
+if sql%NOTFOUND THEN
+DBMS_OUTPUT.PUT_LINE('NUMBER OF CUSTOMERS SELECTED: ');
+elsif sql%FOUND THEN
+total_rows:=sql%rowcount;
+DBMS_OUTPUT.PUT_LINE('NUMBER OF CUSTOMERS SELECTED: ');
+END IF;
+END;
+/
+
+SELECT * FROM customers;
