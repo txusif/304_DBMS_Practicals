@@ -74,7 +74,7 @@ DBMS_OUTPUT.PUT_LINE('Emp NAME: '||empname);
 DBMS_OUTPUT.PUT_LINE('Emp Address: '||empaddr);
 end;
 /
-
+exec syemp(10);
 -- D)
 CREATE TABLE syarea1
 (
