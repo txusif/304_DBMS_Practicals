@@ -20,11 +20,11 @@ esalary NUMBER(8,2)
 )
 ;
 
-INSERT INTO empl VALUES(4,'serena','10-MAR-2017',23,'F',55000);
-INSERT INTO empl VALUES(22,'txusif','28-oct-2017',23,'M',55000);
+INSERT INTO empl VALUES(2,'mikey','28-oct-2017',23,'M',55000);
 INSERT INTO empl VALUES(999,'jarad','28-jul-2017',22,'M',45000);
+INSERT INTO empl VALUES(65,'hina','10-MAR-2017',23,'F',55000);
 INSERT INTO empl VALUES(20,'morty','21-apr-2015',32,'M',30000);
-INSERT INTO empl VALUES(1,'rick','21-jan-2015',23,'M',40000);
+INSERT INTO empl VALUES(19,'Anna','21-jan-2015',23,'F',40000);
 
 SELECT * FROM empl;
 
