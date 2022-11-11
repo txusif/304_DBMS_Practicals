@@ -9,7 +9,7 @@ IF that employee is a female, add 5 years to age.
 IF that employee is a male, add 3 years to age.
 CREATE the empl TABLE with appropriate columns. */
 
-CREATE TABLE empl
+CREATE TABLE emp
 (
 eno NUMBER(3),
 ename varchar2(30),
@@ -20,13 +20,13 @@ esalary NUMBER(8,2)
 )
 ;
 
-INSERT INTO empl VALUES(2,'mikey','28-oct-2017',23,'M',55000);
-INSERT INTO empl VALUES(999,'jarad','28-jul-2017',22,'M',45000);
-INSERT INTO empl VALUES(65,'hina','10-MAR-2017',23,'F',55000);
-INSERT INTO empl VALUES(20,'morty','21-apr-2015',32,'M',30000);
-INSERT INTO empl VALUES(19,'Anna','21-jan-2015',23,'F',40000);
+INSERT INTO emp VALUES(2,'mikey','28-oct-2017',23,'M',55000);
+INSERT INTO emp VALUES(999,'jarad','28-jul-2017',22,'M',45000);
+INSERT INTO emp VALUES(65,'hina','10-MAR-2017',23,'F',55000);
+INSERT INTO emp VALUES(20,'morty','21-apr-2015',32,'M',30000);
+INSERT INTO emp VALUES(19,'Anna','21-jan-2015',23,'F',40000);
 
-SELECT * FROM empl;
+SELECT * FROM emp;
 
 DECLARE
 meno NUMBER (3);
@@ -34,13 +34,13 @@ mgENDer char(1);
 mage NUMBER(3);
 BEGIN
 meno:=&meno;
-SELECT egender,eage INTO mgender,mage FROM empl WHERE eno=meno;
+SELECT egender,eage INTO mgender,mage FROM emp WHERE eno=meno;
 DBMS_OUTPUT.PUT_LINE('Emo no: '||meno||' is '||mgender||' and is '||mage||' year old');
 IF mgENDer='F' THEN
-UPDATE empl set eage=eage+5 WHERE eno=meno;
+UPDATE emp set eage=eage+5 WHERE eage=mage;
 END IF;
-IF mgenderer='M' THEN
-UPDATE empl set eage=eage+3 WHERE eno=meno;
+IF mgender='M' THEN
+UPDATE emp set eage=eage+3 WHERE eage=mage;
 END IF;
 END;
 /
